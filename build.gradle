@@ -1,0 +1,60 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.2.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
+}
+
+group = 'org.erfan'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
+}
+
+dependencies {
+
+    //for rest api
+    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+
+    //for getter setter
+    compileOnly 'org.projectlombok:lombok'
+
+    //for JPA
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.2.0.RELEASE'
+
+    //for mysql database
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.18'
+
+    //for entity mapper
+    compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.6'
+
+    //for spring security
+    compile group: 'org.springframework.security', name: 'spring-security-web', version: '5.2.2.RELEASE'
+    compile group: 'org.springframework.security', name: 'spring-security-config', version: '5.2.2.RELEASE'
+
+    compile group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
+
+    // for template  engine
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+
+//	//oracle database
+//	runtimeOnly 'com.oracle.ojdbc:ojdbc8'
+
+    annotationProcessor 'org.projectlombok:lombok'
+}
+
+test {
+    useJUnitPlatform()
+}
